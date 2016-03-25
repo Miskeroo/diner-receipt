@@ -27,6 +27,8 @@ public class chickenSight : MonoBehaviour
     // how long will a chicken run for before it goes back to wandering
     public float alarmedTime;
 
+    public AudioSource alarmAlert;
+
     // navMesh for level - ask me about it and i will explain how to create- may use this to check for distance
     private NavMeshAgent nav;
 
@@ -38,6 +40,9 @@ public class chickenSight : MonoBehaviour
 
     // how long the chicken has been alarmed for since last event;
     private float currAlarmTime;
+
+    // how long to wait before checking for player again;
+    private float alarmCooldown;
 
     //TIPS FOR MISK AND FLIGHTY-----------------------------------------------------
     // AWAKE AND START ARE BOTH FUNCTIONS USED MAINLY FOR INITIALIZATIONSZSSS
@@ -53,6 +58,9 @@ public class chickenSight : MonoBehaviour
     {
         // we use GetComponent<>() to find other things attached to THIS game component;
 
+        // multiple audio sources appear in an array when called by get components. Ordered as they appear in INSPECTOR in the EDITOR
+        AudioSource[] sources = GetComponents<AudioSource>();
+        alarmAlert = sources[1];
         nav = GetComponent<NavMeshAgent>();
         chickenHearRadius = GetComponent<SphereCollider>();
         thePlayer = GameObject.FindGameObjectWithTag("Player");
@@ -62,6 +70,8 @@ public class chickenSight : MonoBehaviour
     // Use this for initialization for now...
 	void Start ()
     {
+        currAlarmTime = 0f;
+        alarmCooldown = .5f;
         chased = false;
         canSeePlayer = false;
         
@@ -71,6 +81,10 @@ public class chickenSight : MonoBehaviour
 	// Update is called once per frame 
 	void Update () 
     {
+        if(chased)
+        {
+            currAlarmTime += Time.deltaTime;
+        }
         
 	
 	}
@@ -80,47 +94,56 @@ public class chickenSight : MonoBehaviour
     // HEARING HAS NOT BEEN IMPLEMENTED  YET.
     void OnTriggerStay(Collider other)
     {
-        
-        if(other.gameObject == thePlayer)
+
+        // we are being chased and the alarm time cooldown has passed, or we are not being chased
+        if ((chased && (currAlarmTime > alarmCooldown)) || !chased)
         {
-            // set it false for now.  the player is colliding with the view range of our object,
-            // but we dont know if it is in the field of view yet.
-            canSeePlayer = false;
 
-
-            // get the direction of the collision from the object this script is attached to. 
-            Vector3 direction = other.transform.position - transform.position;
-
-            // we are calculating hte ANGLE form the FRONT of the object this script is attahced to.
-            float angle = Vector3.Angle(direction, transform.forward);
-
-
-            // WE CUT THE ANGLE IN HALF RIGHT FLIGHTY?
-            if (angle < sightFieldOfView * .5f)
+            if (other.gameObject == thePlayer)
             {
-                // RAYCASTS...
-                // a raycast is a line that GOES DIRECTLY OUT... SHOOTING GAMES USE THIS FOR BULLETS.
-                RaycastHit hit;
+                // set it false for now.  the player is colliding with the view range of our object,
+                // but we dont know if it is in the field of view yet.
+                canSeePlayer = false;
 
 
-                //ok so this is waht this line means..
+                // get the direction of the collision from the object this script is attached to. 
+                Vector3 direction = other.transform.position - transform.position;
 
-                // we are invoking raycast, AT THE POSITION of this objects transform. but we are moving the raycast
-                //UP halfway the height of the object.
-                //going out as far as CHICKEN HEAR RADIUS is ( the fartherst are chicken can see/ hear)
-                if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, chickenHearRadius.radius))
+                // we are calculating hte ANGLE form the FRONT of the object this script is attahced to.
+                float angle = Vector3.Angle(direction, transform.forward);
+
+
+                // WE CUT THE ANGLE IN HALF RIGHT FLIGHTY?
+                if (angle < sightFieldOfView * .5f)
                 {
-                    // if our raycast hits the player
-                    if (hit.collider.gameObject == thePlayer)
+                    // RAYCASTS...
+                    // a raycast is a line that GOES DIRECTLY OUT... SHOOTING GAMES USE THIS FOR BULLETS.
+                    RaycastHit hit;
+
+
+                    //ok so this is waht this line means..
+
+                    // we are invoking raycast, AT THE POSITION of this objects transform. but we are moving the raycast
+                    //UP halfway the height of the object.
+                    //going out as far as CHICKEN HEAR RADIUS is ( the fartherst are chicken can see/ hear)
+                    if (Physics.Raycast(transform.position + transform.up, direction.normalized, out hit, chickenHearRadius.radius))
                     {
-                        canSeePlayer = true;
-                        alarmedTime = 0;
-                        chased = true;
-                        Debug.Log("ALARMED");
+                        // if our raycast hits the player
+                        if (hit.collider.gameObject == thePlayer)
+                        {
+                            canSeePlayer = true;
+                            // reset time since last sight check;
+                            currAlarmTime = 0;
+                            chased = true;
+                            Debug.Log("ALARMED");
+                            // play the alert bell
+                            alarmAlert.Play();
+
+                        }
                     }
                 }
-            }
 
+            }
         }
     }
 

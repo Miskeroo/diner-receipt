@@ -135,7 +135,7 @@ public class chickenSight : MonoBehaviour
                             // reset time since last sight check;
                             currAlarmTime = 0;
                             chased = true;
-                            Debug.Log("ALARMED");
+                            
                             // play the alert bell
                             alarmAlert.Play();
 

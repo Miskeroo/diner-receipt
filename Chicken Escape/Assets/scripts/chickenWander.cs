@@ -55,7 +55,7 @@ public class chickenWander : MonoBehaviour
             // has the chicken been wandering for longer than the cooldown for a new path?
             if(currWanderTime > wanderUpdateTime)
             {
-                Debug.Log("Updating wander goal");
+                
                 // Create a new destination/ path
                 Vector3 position = new Vector3(gameObject.transform.position.x + Random.Range(-7.0F, 7.0F), 0, gameObject.transform.position.z + Random.Range(-7.0F, 7.0F));
                 moveControl = GetComponent<moveTo>();

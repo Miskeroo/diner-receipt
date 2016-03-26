@@ -22,7 +22,7 @@ public class moveTo : MonoBehaviour
         // create path for chicken, true if path is walkable
         if(NavMesh.CalculatePath(gameObject.transform.position, destination, NavMesh.AllAreas,path))
         {
-            Debug.Log("Path calculated and routed");
+            
             agent.destination = destination;
             return true;
         }

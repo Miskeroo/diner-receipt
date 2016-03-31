@@ -45,7 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\DayNight.cs" />
+     <Compile Include="Assets\scripts\Lamp.cs" />
      <Compile Include="Assets\scripts\PickupObject.cs" />
+     <Compile Include="Assets\scripts\PracticeScripts\EventManager.cs" />
+     <Compile Include="Assets\scripts\PracticeScripts\EventTriggerTest.cs" />
+     <Compile Include="Assets\scripts\PracticeScripts\test1.cs" />
+     <Compile Include="Assets\scripts\SunLight.cs" />
      <Compile Include="Assets\scripts\chickenSight.cs" />
      <Compile Include="Assets\scripts\chickenWander.cs" />
      <Compile Include="Assets\scripts\moveTo.cs" />

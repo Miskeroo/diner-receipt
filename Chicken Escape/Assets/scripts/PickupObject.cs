@@ -11,6 +11,7 @@ public class PickupObject : MonoBehaviour
     private objectGrabbed heldObject;
     private Rigidbody m_body;
     private GameObject m_item;
+    private Item itemPickup;
     
 
 	// Use this for initialization
@@ -66,6 +67,27 @@ public class PickupObject : MonoBehaviour
                     Carry(m_item.transform.parent.gameObject);
                 }
             }
+
+            else if (hit.collider.gameObject.tag == "itemPickup")
+            {
+                Debug.Log("Picked up Item");
+
+                itemPickup = hit.collider.gameObject.GetComponent<Item>();
+                m_item = hit.collider.gameObject;
+               
+                
+                if(itemPickup.Pickup())
+                {
+                    Debug.Log("Picked up: " + itemPickup.itemName);
+                    Destroy(m_item);
+                }
+            }
+
+            else
+            {
+                Debug.Log("Grab failed");
+            }
+
             // Do something with the object that was hit by the raycast.
         }
 

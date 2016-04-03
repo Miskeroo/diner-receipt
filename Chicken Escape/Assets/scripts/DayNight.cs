@@ -46,12 +46,12 @@ public class DayNight : MonoBehaviour
     void Init()
     {
         Debug.Log("Init Called Day Night");
-        minutesInDay = 1;
+        minutesInDay = 3;
 
         timeModifier = 1 / ((float)(60 * minutesInDay) / 1440);
 
         minutesExact = 0;
-        hours = 0;
+        hours = 6;
         dayNum = 0;
     }
 	
@@ -67,7 +67,7 @@ public class DayNight : MonoBehaviour
     //TODO CUT THIS UPDATE UP INTO SMALLLER FUNCTIONS. 
 	void Update () 
     {
-        Debug.Log("It is now " + hours + ":"+minutesRound);
+        //Debug.Log("It is now " + hours + ":"+minutesRound);
         
 
         minutesExact = minutesExact + (Time.deltaTime * (timeModifier));

@@ -76,7 +76,12 @@ public class PickupObject : MonoBehaviour
                 m_item = hit.collider.gameObject;
                
                 
-                if(itemPickup.Pickup())
+                if(itemPickup.GetItemType() == "Weapon")
+                {
+
+                }
+
+                else if(itemPickup.Pickup())
                 {
                     Debug.Log("Picked up: " + itemPickup.itemName);
                     Destroy(m_item);

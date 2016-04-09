@@ -45,19 +45,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\DayNight.cs" />
-     <Compile Include="Assets\scripts\Item.cs" />
-     <Compile Include="Assets\scripts\ItemPickup.cs" />
-     <Compile Include="Assets\scripts\Lamp.cs" />
-     <Compile Include="Assets\scripts\PickupObject.cs" />
-     <Compile Include="Assets\scripts\PracticeScripts\EventManager.cs" />
-     <Compile Include="Assets\scripts\PracticeScripts\EventTriggerTest.cs" />
-     <Compile Include="Assets\scripts\PracticeScripts\test1.cs" />
-     <Compile Include="Assets\scripts\SunLight.cs" />
-     <Compile Include="Assets\scripts\chickenSight.cs" />
-     <Compile Include="Assets\scripts\chickenWander.cs" />
-     <Compile Include="Assets\scripts\moveTo.cs" />
-     <Compile Include="Assets\scripts\objectGrabbed.cs" />
+     <Compile Include="Assets\scripts\Character\PickupObject.cs" />
+     <Compile Include="Assets\scripts\Character\PocketPickup.cs" />
+     <Compile Include="Assets\scripts\Enviornment\DayNight.cs" />
+     <Compile Include="Assets\scripts\Enviornment\SunLight.cs" />
+     <Compile Include="Assets\scripts\NPC\PracticeScripts\EventManager.cs" />
+     <Compile Include="Assets\scripts\NPC\PracticeScripts\EventTriggerTest.cs" />
+     <Compile Include="Assets\scripts\NPC\PracticeScripts\test1.cs" />
+     <Compile Include="Assets\scripts\NPC\chickenSight.cs" />
+     <Compile Include="Assets\scripts\NPC\chickenWander.cs" />
+     <Compile Include="Assets\scripts\NPC\moveTo.cs" />
+     <Compile Include="Assets\scripts\Props\Item.cs" />
+     <Compile Include="Assets\scripts\Props\Lamp.cs" />
+     <Compile Include="Assets\scripts\Utility\ItemPickup.cs" />
+     <Compile Include="Assets\scripts\Utility\objectGrabbed.cs" />
+     <Compile Include="Assets\scripts\procedural generation\houseBuilder.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

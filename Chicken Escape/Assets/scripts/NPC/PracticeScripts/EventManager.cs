@@ -18,7 +18,7 @@ public class EventManager : MonoBehaviour
     {
         get
         {
-            Debug.Log("Initialize 2");
+           
             if(!m_eventManager)
             {
                 m_eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;

@@ -7,6 +7,8 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private bool consumable;
+    [SerializeField]
+    private string itemType;
 
 
 
@@ -26,6 +28,9 @@ public class Item : MonoBehaviour
         return itemName;
     }
 	
-	
+	public string GetItemType()
+    {
+        return itemType;
+    }
 
 }

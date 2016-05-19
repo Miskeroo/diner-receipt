@@ -59,6 +59,8 @@
      <Compile Include="Assets\scripts\Props\Lamp.cs" />
      <Compile Include="Assets\scripts\Utility\ItemPickup.cs" />
      <Compile Include="Assets\scripts\Utility\objectGrabbed.cs" />
+     <Compile Include="Assets\scripts\procedural generation\RoomElement.cs" />
+     <Compile Include="Assets\scripts\procedural generation\RoomNode.cs" />
      <Compile Include="Assets\scripts\procedural generation\houseBuilder.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
